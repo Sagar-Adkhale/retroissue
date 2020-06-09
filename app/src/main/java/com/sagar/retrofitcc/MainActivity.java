@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sagar.retrofitcc.entity.bodyentity.StartQRBody;
 import com.sagar.retrofitcc.entity.bodyentity.TwoQRBody;
 import com.sagar.retrofitcc.entity.jobresponse.JobResponseEntity;
 import com.sagar.retrofitcc.network.APIRequestService;
@@ -30,18 +29,18 @@ TextView textView;
         APIRequestService apiRequestService = RetrofitClient.getApiService();
         TwoQRBody twoQRBody = new TwoQRBody();
 //                twoQRBody.qrCode = "qrCode";
-        String barerToken="Bearer "+"12/U/20882/1591666705264/fc4fada0a6a7492fcdf5b7630ce533f2";
+        String barerToken="Bearer "+"12/U/20855/1591721025879/aafcd77dcfeae20c33ac414461e789f6";
         twoQRBody.qrCode="https://sqr.ai/a0GPkRc";
         twoQRBody.startQrCode="https://sqr.ai/a0GPkRc";
         //           twoQRBody.startQrCode = "qrCode";
-        Call<JobResponseEntity> call=apiRequestService.cancelfinishJob("finish",barerToken,twoQRBody);
+        Call<JobResponseEntity> call=apiRequestService.cancelfinishJob(barerToken,twoQRBody);
         call.enqueue(new Callback<JobResponseEntity>() {
             @Override
             public void onResponse(Call<JobResponseEntity> call, Response<JobResponseEntity> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     JobResponseEntity jobResponseEntity=response.body();
                     textView.setText(jobResponseEntity.getStatus());
-                    Toast.makeText(getApplicationContext(),jobResponseEntity.getJobId(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),jobResponseEntity.getJobId()+"sagar",Toast.LENGTH_LONG).show();
                 }
                 else
                 {
